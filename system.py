@@ -9,7 +9,7 @@ def carregar_tarefas():
             return json.load(arquivo)
 
     except FileNotFoundError:
-        return []
+        return f"arquivo não encontrado '{ARQUIVO}'"
 
 
 def salvar_tarefas(tarefas):
@@ -28,6 +28,7 @@ def adicionar_tarefa(titulo, descricao):
 
     tarefas.append(tarefa)
     salvar_tarefas(tarefas)
+    return f"tarefa '{titulo}' salva"
 
 
 def listar_tarefas():
@@ -35,12 +36,12 @@ def listar_tarefas():
 
     for indice, tarefa in enumerate(tarefas, start=1):
         status = "✓" if tarefa["concluida"] else " "
-        print(f"[{status}] {indice} - {tarefa['titulo']} \n {tarefa[descricao]}")
+        print(f"[{status}] {indice} - {tarefa['titulo']} \n {tarefa['descricao']}")
 
 
 def concluir_tarefa(indice):
     tarefas = carregar_tarefas()
 
     tarefas[indice - 1]["concluida"] = True
-
+    
     salvar_tarefas(tarefas)
