@@ -25,5 +25,4 @@ def listq():
             "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
             title='tarefas',
             border_style='magenta'))
-    
 listq()
