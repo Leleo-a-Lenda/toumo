@@ -1,6 +1,5 @@
 from system import (
     concluir_tarefa,
-    listar_tarefas,
     adicionar_tarefa
 )
 from tui import (
@@ -26,8 +25,28 @@ while True:
             descricao = input('    ')
             adicionar_tarefa(titulo, descricao)
         case ['toumo', 'add', a]:
-            qtd_tarefas = int(command.split()[2])
-            for i in range(qtd_tarefas):
-                print('eai')
+            try:
+                qtd_tarefas = int(command.split()[2])
+                for i in range(qtd_tarefas):
+                    titulo = console.input('[magenta] ~ [/]')
+                    if titulo == "exit":
+                        console.print("[red]operação cancelada[/]")
+                        break
+                    descricao = input('    ')
+                    if descricao == "exit":
+                        console.print("[red]operação cancelada[/]")
+                        break
+                    adicionar_tarefa(titulo, descricao)
+                    console.print(f"[cyan]--[/cyan] [white]tarefa '{titulo}' adcionada[/white] [cyan]--[/cyan]")
+                
+            except ValueError:
+                console.print(
+                    f"\n[red on white]{command}[/red on white]"
+                    " [red]'ValueError'[/]\n'"
+                    "é necessário digitar um valor inteiro após o comando 'add'"
+                )
+        case ['toumo', 'remove', 'i'] | ['toumo', 'rmi']:
+            comma = console.input('[magenta] ~ [/]')
+            remover_tarefa(comma)
         case ['exit']:
             break

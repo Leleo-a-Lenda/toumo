@@ -16,7 +16,6 @@ def salvar_tarefas(tarefas):
     with open(ARQUIVO, "w", encoding="utf-8") as arquivo:
         json.dump(tarefas, arquivo, indent=4, ensure_ascii=False)
 
-
 def adicionar_tarefa(titulo, descricao):
     tarefas = carregar_tarefas()
 
@@ -30,18 +29,14 @@ def adicionar_tarefa(titulo, descricao):
     salvar_tarefas(tarefas)
     return f"tarefa '{titulo}' salva"
 
-
-def listar_tarefas():
-    tarefas = carregar_tarefas()
-
-    for indice, tarefa in enumerate(tarefas, start=1):
-        status = "✓" if tarefa["concluida"] else " "
-        print(f"[{status}] {indice} - {tarefa['titulo']} \n {tarefa['descricao']}")
-
-
 def concluir_tarefa(indice):
     tarefas = carregar_tarefas()
 
-    tarefas[indice - 1]["concluida"] = True
+    tarefas[int(indice) - 1]["concluida"] = True
     
+    salvar_tarefas(tarefas)
+
+def remover_tarefa(indice):
+    tarefas = carregar_tarefas()
+    del tarefas[int(indice)]
     salvar_tarefas(tarefas)
