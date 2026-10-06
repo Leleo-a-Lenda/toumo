@@ -38,5 +38,23 @@ def concluir_tarefa(indice):
 
 def remover_tarefa(indice):
     tarefas = carregar_tarefas()
-    del tarefas[int(indice)]
-    salvar_tarefas(tarefas)
+    try:
+        i = int(indice) - 1
+        if i < 0 or i >= len(tarefas):
+            return "tarefa não encontrada"
+
+        tarefa_removida = tarefas.pop(i)
+        salvar_tarefas(tarefas)
+
+        return f"tarefa '[magenta]{tarefa_removida['titulo']}[/magenta]' removida"
+    except ValueError:
+        return "[red]'ValueError'[/red] o indice precisa ser um valor inteiro"
+
+def nome_tarefa(indice):
+    tarefas = carregar_tarefas()
+    try:
+        indice = int(indice) - 1
+        nome_tarefa = tarefas[indice]["titulo"]
+        return nome_tarefa
+    except ValueError:
+        return False
