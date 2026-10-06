@@ -2,7 +2,6 @@ from system import (
     concluir_tarefa,
     adicionar_tarefa,
     remover_tarefa,
-    carregar_tarefas,
     nome_tarefa
 )
 from tui import (
@@ -11,12 +10,9 @@ from tui import (
     listq
 )
 from rich import print
-from rich.panel import Panel
 from rich.console import Console
-import readline
 
 console = Console()
-readline.set_history_length(1000)
 
 MAGENTA = "\001\033[35m\002"
 RESET = "\001\033[0m\002"
@@ -30,7 +26,7 @@ PROMPT_COMANDO = f"{MAGENTA}> {RESET}"
 PROMPT_TEXTO = f"{MAGENTA} ~ {RESET}"
 
 print(logo_intro())
-print(help_dialog())
+print(help_dialog() + '\n')
 
 while True:    
     command = ler_texto(PROMPT_COMANDO)
@@ -41,11 +37,11 @@ while True:
             titulo = ler_texto(PROMPT_TEXTO)
             if titulo == "exit":
                 console.print("[red]operação cancelada[/]")
-                break
+                continue
             descricao = ler_texto('    ')
             if descricao == "exit":
                 console.print("[red]operação cancelada[/]")
-                break
+                continue
             adicionar_tarefa(titulo, descricao)
             console.print(f"[cyan]--[/cyan] [white]tarefa '{titulo}' adcionada[/white] [cyan]--[/cyan]")
         case ['toumo', 'add', a]:
@@ -55,11 +51,11 @@ while True:
                     titulo = ler_texto(PROMPT_TEXTO)
                     if titulo == "exit":
                         console.print("[red]operação cancelada[/]")
-                        break
+                        continue
                     descricao = ler_texto('    ')
                     if descricao == "exit":
                         console.print("[red]operação cancelada[/]")
-                        break
+                        continue
                     adicionar_tarefa(titulo, descricao)
                     console.print(f"[cyan]--[/cyan] [white]tarefa '{titulo}' adcionada[/white] [cyan]--[/cyan]")
                 

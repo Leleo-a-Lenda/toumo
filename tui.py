@@ -17,6 +17,10 @@ def help_dialog():
 
 def listq():
     tarefas = carregar_tarefas()
+    if not tarefas:
+        print("[dim]nenhuma tarefa cadastrada[/]")
+        return
+
     for indice, tarefa in enumerate(tarefas, start=1):
         status = "[green]✓[/]" if tarefa["concluida"] else " "
         print(Panel.fit(
@@ -25,4 +29,3 @@ def listq():
             "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
             title='tarefas',
             border_style='magenta'))
-listq()
