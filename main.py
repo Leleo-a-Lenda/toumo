@@ -42,8 +42,7 @@ while True:
             if descricao == "exit":
                 console.print("[red]operação cancelada[/]")
                 continue
-            adicionar_tarefa(titulo, descricao)
-            console.print(f"[cyan]--[/cyan] [white]tarefa '{titulo}' adcionada[/white] [cyan]--[/cyan]")
+            console.print(adicionar_tarefa(titulo, descricao))
         case ['toumo', 'add', a]:
             try:
                 qtd_tarefas = int(command.split()[2])
@@ -56,8 +55,7 @@ while True:
                     if descricao == "exit":
                         console.print("[red]operação cancelada[/]")
                         continue
-                    adicionar_tarefa(titulo, descricao)
-                    console.print(f"[cyan]--[/cyan] [white]tarefa '{titulo}' adcionada[/white] [cyan]--[/cyan]")
+                    console.print(adicionar_tarefa(titulo, descricao))
                 
             except ValueError:
                 console.print(

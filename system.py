@@ -1,5 +1,8 @@
 import json
+from rich.console import Console
+from rich.text import Text
 
+console = Console()
 ARQUIVO = "tarefas.json"
 
 
@@ -27,7 +30,8 @@ def adicionar_tarefa(titulo, descricao):
 
     tarefas.append(tarefa)
     salvar_tarefas(tarefas)
-    return f"tarefa '{titulo}' salva"
+
+    return f"[cyan]--[/cyan] [white]tarefa [cyan]'{titulo}'[/cyan] adcionada[/white] [cyan]--[/cyan]"
 
 def concluir_tarefa(indice):
     tarefas = carregar_tarefas()
